@@ -1,0 +1,18 @@
+diff --color --unified --recursive --text --color linux-6.1.12.org/drivers/video/aperture.c linux-6.1.12.new/drivers/video/aperture.c
+--- linux-6.1.12.org/drivers/video/aperture.c	2023-02-14 10:11:56.000000000 -0800
++++ linux-6.1.12.new/drivers/video/aperture.c	2023-02-20 16:17:13.611184816 -0800
+@@ -294,7 +294,8 @@
+ 	 * ask for this, so let's assume that a real driver for the display
+ 	 * was already probed and prevent sysfb to register devices later.
+ 	 */
+-	sysfb_disable();
++	if (primary)
++		sysfb_disable();
+ 
+ 	aperture_detach_devices(base, size);
+ 
+@@ -355,3 +356,4 @@
+ 
+ }
+ EXPORT_SYMBOL(aperture_remove_conflicting_pci_devices);
++
